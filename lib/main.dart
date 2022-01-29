@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:techteam/constrants.dart';
 import 'package:techteam/routes.dart';
-import 'package:techteam/screen/begin/begin_screen.dart';
+import 'package:techteam/screen/onboarding/onboarding_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             centerTitle: true,
           )),
       routes: routes,
-      initialRoute: BeginScreen.routeName,
+      initialRoute: Onboarding.routeName,
     );
   }
 }

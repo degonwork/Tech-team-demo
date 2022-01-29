@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:techteam/screen/begin/begin_screen.dart';
+import 'package:techteam/screen/onboarding/onboarding_screen.dart';
 import 'package:techteam/screen/splash/splash_screen.dart';
 
 Map<String, WidgetBuilder> routes = {
-  BeginScreen.routeName: (context) => const BeginScreen(),
+  Onboarding.routeName: (context) => const Onboarding(),
   SplashScreen.routename: (context) => const SplashScreen(),
 };
