@@ -28,6 +28,9 @@ class Body extends StatelessWidget {
                 height: getProportionateScreenHeight(10),
               ),
               const NoAccount(),
+              SizedBox(
+                height: getProportionateScreenHeight(30),
+              ),
             ],
           ),
         ],
