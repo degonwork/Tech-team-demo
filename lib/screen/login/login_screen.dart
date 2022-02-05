@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:techteam/screen/splash/component/body.dart';
+import 'package:techteam/screen/login/component/body.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
-  static String routename = '/splash';
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+  static String routeName = '/login';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

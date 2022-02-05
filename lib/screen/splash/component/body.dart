@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:techteam/component/default_button.dart';
 import 'package:techteam/constrants.dart';
+import 'package:techteam/screen/login/login_screen.dart';
 import 'package:techteam/screen/splash/component/widget/splash_content.dart';
 import 'package:techteam/size_config.dart';
 
@@ -87,7 +88,9 @@ class _BodyState extends State<Body> {
                       const Spacer(),
                       DefaultButton(
                         text: 'Tiếp tục',
-                        press: () {},
+                        press: () {
+                          Navigator.pushNamed(context, LoginScreen.routeName);
+                        },
                       )
                     ],
                   ),

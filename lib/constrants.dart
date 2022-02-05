@@ -9,6 +9,16 @@ const kPrimaryGradientColor = LinearGradient(
 );
 const kSecondaryColor = Color(0xFF979797);
 const kTitleTextColor = Color(0xFF828282);
+const kErrorTextColor = Color(0xFFF9CECE);
 
 const kAnimationDuration = Duration(milliseconds: 200);
 Duration duration = const Duration(seconds: 3);
+
+final RegExp emailValidatorRegExp =
+    RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+const String kEmailNullError = "Vui lòng nhập email hoặc số điện thoại";
+const String kInvalidEmailError = "Email sai định dạng, vui lòng nhập lại!";
+const String kPassNullError = "Vui lòng nhập mật khẩu của bạn";
+const String kComformPassNullError = "Vui lòng nhập lại mật khẩu xác thực";
+const String kShortPassError = "Mật khẩu quá ngắn";
+const String kMatchPassError = "Mật khẩu xác thực không đúng";

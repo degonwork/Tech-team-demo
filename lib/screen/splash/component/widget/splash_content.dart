@@ -37,7 +37,9 @@ class SplashContent extends StatelessWidget {
         Text(
           titleText!,
           textAlign: TextAlign.center,
-          style: const TextStyle(color: kTitleTextColor),
+          style: const TextStyle(
+            color: kTitleTextColor,
+          ),
         ),
       ],
     );
