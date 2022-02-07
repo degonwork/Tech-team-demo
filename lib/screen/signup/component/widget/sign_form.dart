@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:techteam/component/custom_suffix_icon.dart';
 import 'package:techteam/component/default_button.dart';
 import 'package:techteam/component/form_error.dart';
-import 'package:techteam/constrants.dart';
 
+import '../../../../constrants.dart';
 import '../../../../size_config.dart';
 
 class SignForm extends StatefulWidget {
@@ -19,30 +19,30 @@ class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
+  String? comformPassword;
   final List<String> errorsEmails = [];
   final List<String> errorPasswords = [];
-  final List<Color> color = [
-    Colors.white,
-    Colors.white,
-  ];
+  final List<String> errorComformPasswords = [];
+  final List<Color> color = [Colors.white, Colors.white, Colors.white];
   bool? remember = false;
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: getProportionateScreenWidth(15),
-        ),
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: getProportionateScreenWidth(15),
+      ),
+      child: Form(
+        key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
               'Email/Số điện thoại',
               style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: getProportionateScreenWidth(15)),
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: getProportionateScreenWidth(15),
+              ),
             ),
             SizedBox(
               height: getProportionateScreenHeight(10),
@@ -53,7 +53,7 @@ class _SignFormState extends State<SignForm> {
             ),
             FormErrorEmails(errorsEmails: errorsEmails),
             SizedBox(
-              height: getProportionateScreenHeight(20),
+              height: getProportionateScreenHeight(10),
             ),
             Text(
               'Mật khẩu',
@@ -74,31 +74,40 @@ class _SignFormState extends State<SignForm> {
             SizedBox(
               height: getProportionateScreenHeight(10),
             ),
+            Text(
+              'Mật khẩu',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: getProportionateScreenWidth(15),
+              ),
+            ),
+            SizedBox(
+              height: getProportionateScreenHeight(10),
+            ),
+            buildComformPasswordFormField(),
+            SizedBox(
+              height: getProportionateScreenHeight(5),
+            ),
+            FormErrorComformPassword(
+                errorsComformPassword: errorComformPasswords),
+            SizedBox(
+              height: getProportionateScreenHeight(10),
+            ),
             Row(
               children: <Widget>[
                 Checkbox(
                   value: remember,
                   activeColor: kTitleTextColor,
                   onChanged: (value) {
-                    setState(() {
-                      remember = value;
-                    });
+                    setState(
+                      () {
+                        remember = value;
+                      },
+                    );
                   },
                 ),
-                const Text('Nhớ đăng nhập'),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    // Navigator to ??
-                  },
-                  child: const Text(
-                    'Quên mật khẩu?',
-                    style: TextStyle(
-                      color: Color(0XFF4F4F4F),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                const Text('Tôi đồng ý với điều khoản'),
               ],
             ),
             SizedBox(
@@ -109,7 +118,8 @@ class _SignFormState extends State<SignForm> {
               press: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  print('After save email: $email, password: $password');
+                  print(
+                      'After save email: $email, password: $password, comform password: $comformPassword}');
                 }
               },
             ),
@@ -235,6 +245,68 @@ class _SignFormState extends State<SignForm> {
     return OutlineInputBorder(
       borderSide: BorderSide(
         color: color[1],
+      ),
+      borderRadius: BorderRadius.circular(10),
+    );
+  }
+
+  Container buildComformPasswordFormField() {
+    return Container(
+      decoration: BoxDecoration(
+        color: color[2],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: TextFormField(
+        obscureText: true,
+        onSaved: (newValue) => comformPassword = newValue,
+        onChanged: (value) {
+          if (value.isNotEmpty &&
+              errorComformPasswords.contains(kComformPassNullError)) {
+            setState(() {
+              errorComformPasswords.remove(kComformPassNullError);
+              color[2] = Colors.white;
+            });
+          } else if (password == value &&
+              errorComformPasswords.contains(kMatchPassError)) {
+            setState(() {
+              errorComformPasswords.remove(kMatchPassError);
+              color[2] = Colors.white;
+            });
+          }
+        },
+        validator: (value) {
+          if (value!.isEmpty &&
+              !errorComformPasswords.contains(kComformPassNullError)) {
+            setState(() {
+              errorComformPasswords.add(kComformPassNullError);
+              color[2] = const Color(0XFFF9CECE);
+            });
+          } else if (password != value &&
+              !errorComformPasswords.contains(kMatchPassError)) {
+            setState(() {
+              errorComformPasswords.add(kMatchPassError);
+              color[2] = const Color(0XFFF9CECE);
+            });
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+          hintText: 'Nhập lại mật khẩu',
+          enabledBorder: outLineInputComformPasswordBorder(),
+          focusedBorder: outLineInputComformPasswordBorder(),
+          border: outLineInputComformPasswordBorder(),
+          suffixIcon: const CustomSuffixIcon(
+            svgIcon: 'assets/icons/visibility_24px.svg',
+          ),
+        ),
+      ),
+    );
+  }
+
+  OutlineInputBorder outLineInputComformPasswordBorder() {
+    return OutlineInputBorder(
+      borderSide: BorderSide(
+        color: color[2],
       ),
       borderRadius: BorderRadius.circular(10),
     );

@@ -17,6 +17,12 @@ AppBarTheme appBarTheme() {
     elevation: 0,
     color: Colors.white,
     systemOverlayStyle: SystemUiOverlayStyle.light,
+    titleTextStyle: TextStyle(
+      color: Colors.black,
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+    ),
+    iconTheme: IconThemeData(color: Colors.black),
     centerTitle: true,
   );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techteam/screen/signup/signup_screen.dart';
 import 'package:techteam/size_config.dart';
 
 import '../constrants.dart';
@@ -19,7 +20,7 @@ class NoAccount extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            //Navigator.pushname
+            Navigator.pushNamed(context, SignupScreen.routeName);
           },
           child: const Text(
             'Đăng kí',

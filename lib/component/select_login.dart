@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:techteam/component/socal_cart.dart';
 
-import '../../../../size_config.dart';
+import '../size_config.dart';
 
 class SelectLogin extends StatelessWidget {
   const SelectLogin({

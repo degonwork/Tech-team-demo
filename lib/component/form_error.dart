@@ -47,3 +47,26 @@ class FormErrorEmails extends StatelessWidget {
     );
   }
 }
+
+class FormErrorComformPassword extends StatelessWidget {
+  const FormErrorComformPassword({
+    Key? key,
+    required this.errorsComformPassword,
+  }) : super(key: key);
+
+  final List<String> errorsComformPassword;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: List.generate(
+        errorsComformPassword.length,
+        (index) => Text(
+          errorsComformPassword[index],
+          style: const TextStyle(color: Color(0XFFEB5757)),
+        ),
+      ),
+    );
+  }
+}
