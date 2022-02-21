@@ -3,6 +3,7 @@ import 'package:techteam/component/custom_suffix_icon.dart';
 import 'package:techteam/component/default_button.dart';
 import 'package:techteam/component/form_error.dart';
 import 'package:techteam/constrants.dart';
+import 'package:techteam/screen/home/home_screen.dart';
 
 import '../../../../size_config.dart';
 
@@ -109,7 +110,7 @@ class _SignFormState extends State<SignForm> {
               press: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  print('After save email: $email, password: $password');
+                  Navigator.pushNamed(context, HomeScreen.routeName);
                 }
               },
             ),
@@ -150,20 +151,25 @@ class _SignFormState extends State<SignForm> {
               errorsEmails.add(kEmailNullError);
               color[0] = const Color(0XFFF9CECE);
             });
+            return '';
           } else if (!emailValidatorRegExp.hasMatch(value) &&
               !errorsEmails.contains(kInvalidEmailError)) {
             setState(() {
               errorsEmails.add(kInvalidEmailError);
               color[0] = const Color(0XFFF9CECE);
             });
+            return '';
+          } else {
+            return null;
           }
-          return null;
         },
         decoration: InputDecoration(
           hintText: 'Email/Số điện thoại',
           enabledBorder: outLineInputEmailBorder(),
           focusedBorder: outLineInputEmailBorder(),
-          border: outLineInputEmailBorder(),
+          errorStyle: const TextStyle(height: 0),
+          errorBorder: outLineInputEmailBorder(),
+          focusedErrorBorder: outLineInputEmailBorder(),
         ),
       ),
     );
@@ -209,20 +215,25 @@ class _SignFormState extends State<SignForm> {
               errorPasswords.add(kPassNullError);
               color[1] = const Color(0XFFF9CECE);
             });
+            return '';
           } else if (value.length < 8 &&
               !errorPasswords.contains(kShortPassError)) {
             setState(() {
               errorPasswords.add(kShortPassError);
               color[1] = const Color(0XFFF9CECE);
             });
+            return '';
+          } else {
+            return null;
           }
-          return null;
         },
         decoration: InputDecoration(
           hintText: 'Mật khẩu',
           enabledBorder: outLineInputPasswordBorder(),
           focusedBorder: outLineInputPasswordBorder(),
-          border: outLineInputPasswordBorder(),
+          errorStyle: const TextStyle(height: 0),
+          errorBorder: outLineInputPasswordBorder(),
+          focusedErrorBorder: outLineInputPasswordBorder(),
           suffixIcon: const CustomSuffixIcon(
             svgIcon: 'assets/icons/visibility_24px.svg',
           ),

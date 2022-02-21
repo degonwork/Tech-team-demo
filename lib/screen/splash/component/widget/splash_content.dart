@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../constrants.dart';
 import '../../../../size_config.dart';
 

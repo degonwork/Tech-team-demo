@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:techteam/component/custom_suffix_icon.dart';
 import 'package:techteam/component/default_button.dart';
 import 'package:techteam/component/form_error.dart';
-
 import '../../../../constrants.dart';
 import '../../../../size_config.dart';
 
@@ -118,8 +117,6 @@ class _SignFormState extends State<SignForm> {
               press: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  print(
-                      'After save email: $email, password: $password, comform password: $comformPassword}');
                 }
               },
             ),
@@ -160,12 +157,14 @@ class _SignFormState extends State<SignForm> {
               errorsEmails.add(kEmailNullError);
               color[0] = const Color(0XFFF9CECE);
             });
+            return '';
           } else if (!emailValidatorRegExp.hasMatch(value) &&
               !errorsEmails.contains(kInvalidEmailError)) {
             setState(() {
               errorsEmails.add(kInvalidEmailError);
               color[0] = const Color(0XFFF9CECE);
             });
+            return '';
           }
           return null;
         },
@@ -173,6 +172,9 @@ class _SignFormState extends State<SignForm> {
           hintText: 'Email/Số điện thoại',
           enabledBorder: outLineInputEmailBorder(),
           focusedBorder: outLineInputEmailBorder(),
+          errorStyle: const TextStyle(height: 0),
+          errorBorder: outLineInputEmailBorder(),
+          focusedErrorBorder: outLineInputEmailBorder(),
           border: outLineInputEmailBorder(),
         ),
       ),
@@ -219,12 +221,14 @@ class _SignFormState extends State<SignForm> {
               errorPasswords.add(kPassNullError);
               color[1] = const Color(0XFFF9CECE);
             });
+            return '';
           } else if (value.length < 8 &&
               !errorPasswords.contains(kShortPassError)) {
             setState(() {
               errorPasswords.add(kShortPassError);
               color[1] = const Color(0XFFF9CECE);
             });
+            return '';
           }
           return null;
         },
@@ -233,6 +237,9 @@ class _SignFormState extends State<SignForm> {
           enabledBorder: outLineInputPasswordBorder(),
           focusedBorder: outLineInputPasswordBorder(),
           border: outLineInputPasswordBorder(),
+          errorStyle: const TextStyle(height: 0),
+          errorBorder: outLineInputPasswordBorder(),
+          focusedErrorBorder: outLineInputPasswordBorder(),
           suffixIcon: const CustomSuffixIcon(
             svgIcon: 'assets/icons/visibility_24px.svg',
           ),
@@ -281,12 +288,14 @@ class _SignFormState extends State<SignForm> {
               errorComformPasswords.add(kComformPassNullError);
               color[2] = const Color(0XFFF9CECE);
             });
+            return '';
           } else if (password != value &&
               !errorComformPasswords.contains(kMatchPassError)) {
             setState(() {
               errorComformPasswords.add(kMatchPassError);
               color[2] = const Color(0XFFF9CECE);
             });
+            return '';
           }
           return null;
         },
@@ -295,6 +304,9 @@ class _SignFormState extends State<SignForm> {
           enabledBorder: outLineInputComformPasswordBorder(),
           focusedBorder: outLineInputComformPasswordBorder(),
           border: outLineInputComformPasswordBorder(),
+          errorStyle: const TextStyle(height: 0),
+          errorBorder: outLineInputComformPasswordBorder(),
+          focusedErrorBorder: outLineInputComformPasswordBorder(),
           suffixIcon: const CustomSuffixIcon(
             svgIcon: 'assets/icons/visibility_24px.svg',
           ),

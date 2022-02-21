@@ -4,7 +4,7 @@ import 'package:techteam/constrants.dart';
 
 ThemeData theme() {
   return ThemeData(
-    backgroundColor: const Color(0XFFF2F2F2),
+    backgroundColor: const Color(0XFFFBFBFC),
     fontFamily: 'Muli',
     scaffoldBackgroundColor: Colors.white,
     textTheme: textTheme(),

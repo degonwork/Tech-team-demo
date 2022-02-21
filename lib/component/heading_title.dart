@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../constrants.dart';
 import '../size_config.dart';
 
 class HeadingTitle extends StatelessWidget {
@@ -22,14 +23,7 @@ class HeadingTitle extends StatelessWidget {
             alignment: Alignment.center,
             height: getProportionateScreenHeight(230),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  const Color(0XFF14B77C),
-                  const Color(0XFF19F7A7).withOpacity(0.3),
-                ],
-              ),
+              gradient: kPrimaryGradientColor,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

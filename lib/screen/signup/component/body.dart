@@ -43,7 +43,7 @@ class Body extends StatelessWidget {
                 height: getProportionateScreenHeight(30),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
